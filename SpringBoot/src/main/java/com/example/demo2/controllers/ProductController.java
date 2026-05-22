@@ -61,6 +61,27 @@ public class ProductController {
         */
     }
 
+    @GetMapping("/price")
+    public List<ProductSlim> getProductsByPrice(@RequestParam(required = false) Float maxPrice){
+        List<Product> products;
+
+        if (maxPrice == null){
+            products = productService.getAllProducts();
+        } else {
+            products = productService.getFilteredPriceProducts(maxPrice);
+        }
+
+        return products.stream()
+                .map(product -> {
+                    List<String> categoryNames = product.getCategoryList()
+                            .stream()
+                            .map(category -> category.getName())
+                            .collect(Collectors.toList());
+                    return new ProductSlim(product.getId(), product.getName(), product.getPrice(), categoryNames);
+                })
+                .collect(Collectors.toList());
+    }
+
     @PutMapping("/{id}")
     public ProductSlim updateProduct(@PathVariable Long id,
                                      @RequestBody Product productUpdates) {

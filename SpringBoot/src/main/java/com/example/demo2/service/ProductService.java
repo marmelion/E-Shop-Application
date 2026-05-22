@@ -63,5 +63,9 @@ public class ProductService {
         return productRepository.findByCategories(categoryIds);
     }
 
+    public List<Product> getFilteredPriceProducts(Float maxPrice){
+        return productRepository.findByPrice(maxPrice);
+    }
+
 
 }
