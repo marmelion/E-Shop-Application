@@ -27,6 +27,6 @@
 
 ## Επιπλέον πληροφορίες
 
-**1. Βάση Δεδομένων:**
+**Βάση Δεδομένων:**
 Το username της βάσης είναι `postgres` και το password `mysecretpassword`. To port είναι το `5432` και το Database Name είναι `postgres` (όπως αναγράφεται και στο `application.properties`).
 
